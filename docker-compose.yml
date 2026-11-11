@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  superset:
+    image: apache/superset:latest
+    container_name: aqi_superset
+    ports:
+      - "8088:8088"
+    environment:
+      - SUPERSET_SECRET_KEY=change_this_to_a_random_string
+    volumes:
+      - ./data:/app/data   # mounts your aqi.db so Superset's container can see it
+    command: >
+      bash -c "
+      superset db upgrade &&
+      superset fab create-admin --username admin --firstname Admin --lastname User --email admin@admin.com --password admin &&
+      superset init &&
+      /bin/sh -c '/usr/bin/run-server.sh'
+      "

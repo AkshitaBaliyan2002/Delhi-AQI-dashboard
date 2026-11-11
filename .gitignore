@@ -1,0 +1,7 @@
+# generated data (regenerate via scripts/generate_data.py + clean_and_load.py)
+data/aqi_raw.csv
+data/aqi.db
+
+__pycache__/
+*.pyc
+.DS_Store
